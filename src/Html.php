@@ -213,7 +213,7 @@ class Html implements Htmlable
      * @return string
 	 */
 	private function __markdown($string){
-		return Markdown::parse($string);
+		return Markdown::parse($string)->toHtml();
 	}
 	
 	/**

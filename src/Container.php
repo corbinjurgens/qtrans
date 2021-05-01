@@ -313,12 +313,13 @@ class Container implements Htmlable
 		foreach($prepend_base as $index => $prepend_bases){
 			$previous = $prepared_prepend_bases;
 			$prepared_prepend_bases = [];
-			foreach($prepend_bases as $p){
+			foreach($prepend_bases ?: [''] as $p){
 				foreach($previous as $i => $b){
 					$prepared_prepend_bases[] = join('.', array_filter([$p, $b]));
 				}
 			}
 		}
+		
 		return $prepared_prepend_bases;
 	}
 	
