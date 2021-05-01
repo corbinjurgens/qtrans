@@ -1,0 +1,35 @@
+{
+    "name": "corbinjurgens/qtrans",
+    "description": "Improved key translations and chainable html manipulations",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Corbin Jurgens",
+            "email": "corbinjurgens@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+		"laravel": ">=5.8"
+	},
+    "autoload": {
+        "psr-4": {
+            "Corbinjurgens\\QTrans\\": "src/"
+        },
+        "files": [
+			"src/helpers.php"
+        ]
+    },
+	"extra": {
+    "laravel": {
+        "providers": [
+            "Corbinjurgens\\QTrans\\ServiceProvider"
+        ],
+		"aliases":
+		{
+			"QTrans": "Corbinjurgens\\QTrans\\Container"
+		}
+    }
+}
+}
