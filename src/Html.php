@@ -167,10 +167,11 @@ class Html implements Htmlable
 	 * ( normally manually setting any processor after
 	 * defaut has been set will clear defaults )
 	 * 
-     * @return void
+     * @return Corbinjurgens\QTrans\Html
 	 */
 	public function clear(){
 		$this->registered_processor = [];
+		return $this;
 	}
 	
 	/**
