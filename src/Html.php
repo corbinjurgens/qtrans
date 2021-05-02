@@ -1,5 +1,5 @@
 <?php
-// cj custom
+
 namespace Corbinjurgens\QTrans;
 
 use Illuminate\Contracts\Support\Htmlable;

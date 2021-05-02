@@ -7,7 +7,7 @@ In cases where your translations in a certain area are all pointing to the same 
 
 ```html
 {{ __('columns.users.name') }}
-{{ __('columns.users.email') }}
+{!! nl2br( e( __('columns.users.notes') ) ) !!}
 {!! __('columns.users.description') !!}
 ```
 
@@ -15,13 +15,17 @@ In cases where your translations in a certain area are all pointing to the same 
 Instead of __() or trans(), use ___() or qtrans()
 Use "shift" function to declare that all following translations should look in a certain area
 
-You can use qtrans($key) or qtrans()->get($key), the latter useful for when you want to call other functions
+You can use qtrans($key) or qtrans()->get($key), the latter useful for when you want to call other functions before getting the translation.
+
+If in your config 'qtrans.processor' array 'escape' is active, then by default all translations will be escaped unless you manually apply processors by chaining off the translation, or chain clear(). In the below example, the config will be as shipped in the package, with escape processor active
+
+There is no longer any need to switch between {{  }} and {!! !!} blade functions. Always use {{  }} and whether or not the text is escaped will depend on your html processor defaults, or on what processors you manually chain
 
 **Inline shift**
 ```html
 {{ qtrans()->shift('columns.users')->get('name') }}
-{{ qtrans('email') }}
-{{ qtrans('description') }}
+{{ qtrans('notes')->escape()->br() }}
+{{ qtrans('description')->clear() }}
 ```
 
 **Pre-shift**
@@ -29,8 +33,8 @@ You can use qtrans($key) or qtrans()->get($key), the latter useful for when you 
 @php(qtrans()->shift('columns.users'))
 
 {{ qtrans('name') }}
-{{ qtrans('email') }}
-{{ qtrans('description') }}
+{{ qtrans('notes')->escape()->br() }}
+{{ qtrans('description')->clear() }}
 ```
 
 ## Warning
@@ -41,6 +45,9 @@ QTrans by default escapes translation strings. You can edit this in config qtran
 ## Composer
 
 `composer require corbinjurgens/qtrans`
+
+## Config
+`php artisan vendor:publish --tag="qtrans-config"`
 
 ## Manual Installation
 
